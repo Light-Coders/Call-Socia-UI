@@ -8,6 +8,18 @@ function App() {
 
   return (
     <>
+    <navbar> 
+      <div style={{display : 'inline-block'}}>Hello 1</div>
+      <div style={{display : 'inline-block'}}>Hello 2</div>
+      <div style={{display : 'inline-block'}}>Hello 3</div>
+      <div style={{display : 'inline-block'}}>Hello 4</div>
+      <div style={{display : 'inline-block'}}>Hello 5</div>
+      <div style={{display : 'inline-block'}}>Hello 5</div>
+      <div style={{display : 'inline-block'}}>Hello 5</div>
+      <div style={{display : 'inline-block'}}>Hello 5</div>
+      <div style={{display : 'inline-block'}}>Hello 5</div>
+
+    </navbar>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
