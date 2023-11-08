@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Menubar from '@radix-ui/react-menubar';
 import { CheckIcon, ChevronRightIcon, DotFilledIcon , ChevronDownIcon} from '@radix-ui/react-icons';
 import '../styles/Navbar.css';
+import { GoogleLogin } from '@react-oauth/google';
+
+
+// This ignores the signature verification part as its verified in the backend
+const parseToken = (token) => {
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
+
 
 const Navbar = () => {
-
+  const [user, setUser] = useState(0);
+  
   return (
     <Menubar.Root className="MenubarRoot">
 
@@ -28,8 +43,12 @@ const Navbar = () => {
 
 
       <div className="right">
+
+      {user ?
       <Menubar.Menu>
-        <Menubar.Trigger className="MenubarTrigger">Profile <ChevronDownIcon/></Menubar.Trigger>
+        <Menubar.Trigger className="MenubarTrigger">
+            <img class="w-10 h-10 rounded-full" src={user.picture} alt="Rounded avatar"/>
+        </Menubar.Trigger>
         <Menubar.Portal>
           <Menubar.Content className="MenubarContent" align="start" sideOffset={5} alignOffset={-3}>
             <Menubar.Item className="MenubarItem">
@@ -42,9 +61,23 @@ const Navbar = () => {
         </Menubar.Portal>
       </Menubar.Menu>
 
-      <Menubar.Menu>
-        <Menubar.Trigger className="MenubarTrigger"><a href="#"  className='text-white border-1 rounded-lg p-2 bg-blue-500' >Github</a></Menubar.Trigger>
+      :<Menubar.Menu>
+        <Menubar.Trigger className="MenubarTrigger">
+          <GoogleLogin
+            theme="filled_black"
+            size = "large"
+            onSuccess={credResponse => {
+              let token = credResponse.credential;
+              setUser(parseToken(token));
+            }}
+            onError={() => {
+              console.log('Login Failed');
+            }}
+            useOneTap
+          /> 
+        </Menubar.Trigger>
       </Menubar.Menu>
+      }
       </div>
     </Menubar.Root>
   );
