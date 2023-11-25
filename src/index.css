@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark theme */
+    --color-bkg: 13 27 42;
+    --color-accent1: 27 38 59;
+    --color-accent2: 65 90 119;
+
+    --color-content: 119 141 169;
+    --color-heading: 224 225 221;
+
+    /* ... */
+  }
+  /* @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bkg: 0deg, 0%, 100%;
+      --color-accent1: 200deg, 100%, 50%;
+      --color-accent2: 200deg, 80%, 80%;
+
+      --color-content: 0deg, 0%, 95%;
+      --color-heading: 208deg, 56%, 90%;
+    }
+  } */
+}

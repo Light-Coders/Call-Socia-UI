@@ -1,15 +1,14 @@
-import React from 'react'
-import Navbar from '../Components/Navbar'
-import SearchSection from '../Components/SearchSection'
-
+import React from "react";
+import Navbar from "../Components/Navbar";
+import SearchSection from "../Components/SearchSection";
 
 function HomePage() {
   return (
-    <>
-    <Navbar/>
-    <SearchSection/>
-    </>
-  )
+    <div>
+      <Navbar />
+      <SearchSection />
+    </div>
+  );
 }
 
-export default HomePage
+export default HomePage;
